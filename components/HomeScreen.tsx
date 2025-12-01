@@ -1,9 +1,11 @@
+
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "../App";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
+
 
 interface Post {
   id: number;
@@ -15,19 +17,21 @@ export default function HomeScreen({}: Props) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
+  
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
       .then((data: Post[]) => {
-        setPosts(data);
+        setPosts(data);              
         setLoading(false);
-        console.log("POST VERİLERİ:", data);
+        console.log("POST VERİLERİ:", data); 
       })
       .catch((err) => {
         console.log("Fetch hata:", err);
         setLoading(false);
       });
   }, []);
+
 
   if (loading) {
     return (
@@ -36,6 +40,7 @@ export default function HomeScreen({}: Props) {
       </View>
     );
   }
+
 
   return (
     <View style={styles.container}>

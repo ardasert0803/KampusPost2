@@ -12,11 +12,16 @@ export default function RegisterScreen({ navigation }: Props) {
   const [password2, setPassword2] = useState("");
 
   const handleRegister = () => {
+    // 🔐 Şifre kontrolü
     if (password !== password2) {
       Alert.alert("Hata", "Şifreler uyuşmuyor!");
       return;
     }
-    console.log("Kayıt başarılı");
+
+    // ✅ Şifreler aynı → şimdilik sadece log atıyoruz
+    console.log("Kayıt başarılı", { email, password });
+
+    // İstersen başarılı kayıttan sonra Login'e döndür:
     navigation.navigate("Login");
   };
 
@@ -46,5 +51,9 @@ export default function RegisterScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, justifyContent: "center" },
+  container: {
+    flex: 1,
+    padding: 20,
+    justifyContent: "center",
+  },
 });
